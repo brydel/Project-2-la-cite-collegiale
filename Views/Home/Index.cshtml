@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Project2_Brydel.Models.Produit>
+@{
+    ViewData["Title"] = "TechShop";
+}
+<div class="container mt-5">
+    <!-- Hero -->
+    <div class="hero-section text-center py-5">
+        <h1 class="display-3 fw-bold text-black-50">Bienvenue sur notre boutique de cartes électroniques</h1>
+        <p class="lead text-muted">Découvrez nos produits innovants et performants.</p>
+    </div>
+
+    <!-- Carrousel  -->
+    <div id="carouselProduits" class="carousel slide shadow-lg rounded-3 overflow-hidden mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach (var produit in Model.Select((value, index) => new { value, index }))
+            {
+                <div class="carousel-item @(produit.index == 0 ? "active" : "")">
+                    <img src="@produit.value.ImageUrl" class="d-block w-100 carousel-img object-fit-cover" alt="@produit.value.Nom" style="height: 300px;">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                        <h3 class="text-white fw-bold">@produit.value.Nom</h3>
+                        <p class="text-white">@produit.value.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduits" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProduits" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+
+    <!-- Liste des produits -->
+    <div class="separator">
+        <div class="test-slide">
+            <h2 class="text-center mb-5"><span>Nos Produits</span></h2>
+
+        </div>
+        
+
+    </div>
+   
+    <div class="row g-4">
+        @foreach (var produit in Model)
+        {
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 transition-transform hover:scale-105">
+                    <img src="@produit.ImageUrl" class="card-img-top object-fit-cover rounded-top-3" alt="@produit.Nom" style="height: 200px;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title fw-bold">@produit.Nom</h5>
+                            <p class="card-text text-muted">@produit.Description</p>
+
+                            <div class="longue-description">
+                                <p> Description en genral @produit.Description</p>
+                            </div>
+                            
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <p class="card-text text-success fw-bold"><strong>@produit.Prix $</strong></p>
+                            <a asp-controller="Commande" asp-action="Create" asp-route-produitId="@produit.ProduitId" class="btn btn-primary btn-sm">
+                                Commander <i class="bi bi-cart-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

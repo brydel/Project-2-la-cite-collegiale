@@ -1,0 +1,439 @@
+﻿/* Styles globaux */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Section Hero */
+.hero-section {
+    
+    color: gray;
+    border-radius: 15px;
+    padding: 50px 20px;
+    text-align: center;
+   
+}
+
+    .hero-section h1 {
+        font-size: 2.8rem;
+        font-weight: bold;
+        color:gray;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .hero-section p {
+        font-size: 1.2rem;
+        color: gray;
+        margin-top: 0;
+    }
+
+/* Carrousel */
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.1);
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.carousel-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-text {
+    font-size: 1.2rem;
+    color: #f8f9fa;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Boutons du carrousel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s ease;
+}
+
+    .carousel-control-prev-icon:hover,
+    .carousel-control-next-icon:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+/* Cartes de produits */
+.card {
+    background: #ffffff;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.card .btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+    .card .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+ 
+    .card .btn-primary i {
+        margin-left: 5px;
+        font-size: 1.2rem;
+    }
+    .separator{
+        border-top: double black gray 
+        
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .carousel-item img {
+        height: 350px;
+    }
+
+    .card-img-top {
+        height: 200px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+.container {
+    max-width: 1200px;
+}
+
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Style général du formulaire */
+.card {
+    background: #F8F9FA;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.input-style {
+    border-radius: 8px;
+    border: 1px solid #CED4DA;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+    .input-style:focus {
+        border-color: #6C757D;
+        box-shadow: 0 0 5px rgba(108, 117, 125, 0.5);
+    }
+
+/* Bouton stylisé */
+#submit-btn {
+    background: #212529;
+    color: white;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+    #submit-btn:hover {
+        background: #343A40; 
+    }
+
+
+.produit-clickable {
+    cursor: pointer;
+    
+}
+
+
+
+.success-checkmark {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+}
+
+    .success-checkmark .check-icon {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        border-radius: 50%;
+        box-sizing: content-box;
+     
+    }
+
+        .success-checkmark .check-icon::before {
+            top: 3px;
+            left: -2px;
+            width: 30px;
+            transform-origin: 100% 50%;
+           
+        }
+
+        .success-checkmark .check-icon::after {
+            top: 0;
+            left: 30px;
+            width: 60px;
+            transform-origin: 0 50%;
+           
+            animation: rotate-circle 4.25s ease-in;
+        }
+
+        .success-checkmark .check-icon::before, .success-checkmark .check-icon::after {
+            content: '';
+            height: 100px;
+            position: absolute;
+            
+            transform: rotate(-45deg);
+        }
+
+        .success-checkmark .check-icon .icon-line {
+            height: 5px;
+            background-color: #4CAF50;
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+        }
+
+            .success-checkmark .check-icon .icon-line.line-tip {
+                top: 46px;
+                left: 14px;
+                width: 25px;
+                transform: rotate(45deg);
+                animation: icon-line-tip 0.75s;
+            }
+
+            .success-checkmark .check-icon .icon-line.line-long {
+                top: 38px;
+                right: 8px;
+                width: 47px;
+                transform: rotate(-45deg);
+                animation: icon-line-long 0.75s;
+            }
+
+@keyframes icon-line-tip {
+    0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+
+    54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+
+    70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+    }
+
+    84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+    }
+
+    100% {
+        width: 25px;
+        left: 14px;
+        top: 46px;
+    }
+}
+
+@keyframes icon-line-long {
+    0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+
+    65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+
+    84% {
+        width: 55px;
+        right: 0px;
+        top: 35px;
+    }
+
+    100% {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+    }
+}
+
+/* Styles pour le reçu */
+.receipt-container {
+    border-left: 4px solid #4CAF50;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.receipt-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.receipt-items {
+    font-size: 0.95rem;
+}
+
+.delivery-info {
+    border-left: 4px solid #2196F3;
+}
+
+/* Style pour l'impression */
+@media print {
+    .btn {
+        display: none;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+
+
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+}
+
+.confirmation-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 500px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.btn-primary {
+    background-color: #ff6f61;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .btn-primary:hover {
+        background-color: #e55d50;
+    }
+
+
+
+.product-bubble {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .product-bubble:hover {
+        border: 2px solid #28a745;
+    }
+
+.bubble-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

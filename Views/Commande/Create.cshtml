@@ -1,0 +1,134 @@
+﻿@model Project2_Brydel.Models.Commande
+@{
+    ViewData["Title"] = "Passer une commande";
+
+    if (Model == null || Model.Produit == null)
+    {
+        <p class="text-danger">Erreur : Impossible de charger les informations du produit.</p>
+        return;
+    }
+}
+
+<div class="container mt-4">
+    <!-- Section produit à gauche -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="@(Model.Produit.ImageUrl ?? "/images/default.jpg")" class="card-img-top img-fluid" id="productImage" alt="@(Model.Produit.Nom ?? "Produit inconnu")" />
+                <div class="card-body">
+                    <h3 class="card-title" id="productName">@Model.Produit.Nom</h3>
+                    <p class="card-text" id="productDescription">@Model.Produit.Description</p>
+                    <p><strong>Prix :</strong> <span id="productPrice">@Model.Produit.Prix</span> $</p>
+                </div>
+
+                <!-- Bulles de sélection des produits -->
+                <div class="d-flex justify-content-center mt-3" id="productSelection">
+                    
+                    <div class="product-bubble produit-clickable mx-2 active-bubble"
+                         data-id="@Model.Produit.ProduitId"
+                         data-nom="@Model.Produit.Nom"
+                         data-description="@Model.Produit.Description"
+                         data-prix="@Model.Produit.Prix"
+                         data-image="@Model.Produit.ImageUrl">
+                        <img src="@Model.Produit.ImageUrl" class="bubble-img" alt="@Model.Produit.Nom" />
+                    </div>
+
+                    @foreach (var produit in ((IEnumerable<Project2_Brydel.Models.Produit>)ViewBag.Produits).Where(p => p.ProduitId != Model.ProduitId))
+                    {
+                        <div class="product-bubble produit-clickable mx-2"
+                             data-id="@produit.ProduitId"
+                             data-nom="@produit.Nom"
+                             data-description="@produit.Description"
+                             data-prix="@produit.Prix"
+                             data-image="@produit.ImageUrl">
+                            <img src="@produit.ImageUrl" class="bubble-img" alt="@produit.Nom" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Section formulaire à droite -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded p-4">
+                <h4 class="text-center mb-4">Finaliser la commande</h4>
+                <form asp-action="Create" method="post" id="orderForm" novalidate>
+                    <input type="hidden" asp-for="ProduitId" id="selectedProductId" value="@Model.ProduitId" />
+
+
+                    <div class="form-group mb-3">
+                        <label asp-for="NomClient" class="form-label">Nom</label>
+                        <input asp-for="NomClient" class="form-control input-style" required pattern="^[A-Za-zÀ-ÿ\s\-']{2,50}$" minlength="2" maxlength="50" />
+                        <span asp-validation-for="NomClient" class="invalid-feedback">Le nom doit contenir uniquement des lettres et être entre 2 et 50 caractères.</span>
+                    </div>
+
+
+                    <div class="form-group mb-3">
+                        <label asp-for="PrenomClient" class="form-label">Prénom</label>
+                        <input asp-for="PrenomClient" class="form-control input-style" required pattern="^[A-Za-zÀ-ÿ\s\-']{2,50}$" minlength="2" maxlength="50" />
+                        <span asp-validation-for="PrenomClient" class="invalid-feedback">Le prénom doit contenir uniquement des lettres et être entre 2 et 50 caractères.</span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="AdresseClient" class="form-label">Adresse</label>
+                        <input asp-for="AdresseClient" class="form-control input-style" required minlength="5" maxlength="100" pattern="^[A-Za-z0-9\s,.-]{5,100}$" />
+                        <span asp-validation-for="AdresseClient" class="invalid-feedback">L'adresse doit être entre 5 et 100 caractères.</span>
+                    </div>
+
+
+                    <div class="form-group mb-3">
+                        <label asp-for="TelephoneClient" class="form-label">Téléphone</label>
+                        <input asp-for="TelephoneClient" type="tel" class="form-control input-style" required pattern="^\+?[0-9\s-]{8,15}$" />
+                        <span asp-validation-for="TelephoneClient" class="invalid-feedback">Le téléphone doit contenir entre 8 et 15 chiffres.</span>
+                    </div>
+
+
+                    <div class="form-group mb-4">
+                        <label asp-for="Quantite" class="form-label">Quantité</label>
+                        <input asp-for="Quantite" type="number" class="form-control input-style" min="1" required />
+                        <span asp-validation-for="Quantite" class="invalid-feedback">La quantité doit être d'au moins 1.</span>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn btn-dark w-100 py-2">Confirmer la commande</button>
+                </form>
+
+
+            </div>
+        </div>
+
+
+
+        <!-- Produits similaires -->
+        @if (ViewBag.Produits != null && ((IEnumerable<Project2_Brydel.Models.Produit>)ViewBag.Produits).Any())
+        {
+            <div class="col-12 mt-5">
+                <h4>Vous pourriez aussi aimer :</h4>
+                <div class="row" id="similarProducts">
+                    @foreach (var produit in ViewBag.Produits)
+                    {
+                        <div class="col-md-3 mb-3">
+                            <div class="card produit-clickable"
+                                 data-id="@produit.ProduitId"
+                                 data-nom="@produit.Nom"
+                                 data-description="@produit.Description"
+                                 data-prix="@produit.Prix"
+                                 data-image="@produit.ImageUrl"
+                                 role="button" tabindex="0">
+                                <img src="@produit.ImageUrl" class="card-img-top img-fluid" alt="@produit.Nom" />
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">@produit.Nom</h6>
+                                    <p><strong>@produit.Prix $</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">Aucun produit similaire disponible pour le moment.</p>
+        }
+    </div>
+</div>
+
