@@ -258,3 +258,4 @@ C:\Users\BRYDEL\DATA\Project2_Brydel\Project2_Brydel\obj\Debug\net8.0\refint\Pro
 C:\Users\BRYDEL\DATA\Project2_Brydel\Project2_Brydel\obj\Debug\net8.0\Project2_Brydel.pdb
 C:\Users\BRYDEL\DATA\Project2_Brydel\Project2_Brydel\obj\Debug\net8.0\Project2_Brydel.genruntimeconfig.cache
 C:\Users\BRYDEL\DATA\Project2_Brydel\Project2_Brydel\obj\Debug\net8.0\ref\Project2_Brydel.dll
+C:\Users\BRYDEL\DATA\Project2_Brydel\Project2_Brydel\obj\Debug\net8.0\Project2_Brydel.sourcelink.json
